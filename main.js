@@ -18,7 +18,7 @@ let finishBybitScan = true;
 const waitForNextDelay = 5000;
 const defaultUserAmountRange = {min: 10_000,max:400_000};
 const API_KEY_BOT = process.env.API_KEY_BOT
-const ALLOW_TELEGRAM_USER_ID = process.env.ALLOW_TELEGRAM_USER_ID
+const ALLOW_TELEGRAM_USER_ID = Number(process.env.ALLOW_TELEGRAM_USER_ID)
 
 const acceptedTelegramUsers = [ALLOW_TELEGRAM_USER_ID];
 const botCommands = [ { command: 'start', description: 'Запуск бота'},
@@ -40,6 +40,7 @@ let botReadyToWatchState = 'none'
 let userAmountRange;
 bot.on("polling_error", err => console.error('TelegramBot error', err));
 bot.on('text', async msg => {
+    console.log('Hello',acceptedTelegramUsers,msg.from.id)
     if (!acceptedTelegramUsers.includes(msg.from.id)){
         return;
     }

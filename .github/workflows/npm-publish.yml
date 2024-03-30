@@ -45,6 +45,8 @@ jobs:
       uses: appleboy/ssh-action@v1.0.3
       env:
         NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_GITHUB_TOKEN}}
+        ALLOW_TELEGRAM_USER_ID: ${{secrets.TELEGRAM_ALLOW_USER_ID}}
+        API_KEY_BOT: ${{secrets.TELEGRAM_API_KEY_BOT}}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
@@ -61,9 +63,10 @@ jobs:
           source ~/.nvm/nvm.sh
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
           cd ~/apps/bybit-best-otc-sellers-bot
-
+          
           npm config set @iamrunar:registry https://npm.pkg.github.com/
           npm config set //npm.pkg.github.com/:_authToken ${NODE_AUTH_TOKEN}
+          
           
           npm i @iamrunar/bybit-best-otc-sellers-bot
           pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
