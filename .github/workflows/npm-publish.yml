@@ -65,7 +65,7 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
 
-          export API_KEY_BOT='${API_KEY_BOT}''
+          export API_KEY_BOT='${API_KEY_BOT}'
           export ALLOW_TELEGRAM_USER_ID=${ALLOW_TELEGRAM_USER_ID}
           
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
@@ -75,4 +75,4 @@ jobs:
           npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_GITHUB_TOKEN
 
           npm i @iamrunar/bybit-best-otc-sellers-bot
-          pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
+          pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot --update-env
