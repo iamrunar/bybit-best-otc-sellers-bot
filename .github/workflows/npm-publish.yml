@@ -33,12 +33,12 @@ jobs:
           scope: '@iamrunar'
       - run: |
           npm ci
-          git config --global user.email "${{ vars.ORG_EMAIL }}"
-          git config --global user.name "${{ vars.ORG_NAME }}"
-          npm version patch
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          # git config --global user.email "${{ vars.ORG_EMAIL }}"
+          # git config --global user.name "${{ vars.ORG_NAME }}"
+          # npm version patch
 
   deploy-to-vps:
     needs: publish-gpr
