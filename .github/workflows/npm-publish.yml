@@ -44,7 +44,7 @@ jobs:
       # https://github.com/appleboy/ssh-action
       uses: appleboy/ssh-action@v1.0.3
       env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB-NPM-PACKAGE-TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_GITHUB_TOKEN}}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
