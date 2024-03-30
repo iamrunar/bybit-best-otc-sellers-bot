@@ -43,8 +43,6 @@ jobs:
     - name: Deploy using ssh
       # https://github.com/appleboy/ssh-action
       uses: appleboy/ssh-action@v1.0.3
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
@@ -58,7 +56,6 @@ jobs:
         script: |
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
-
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
           cd ~/apps/bybit-best-otc-sellers-bot
 
@@ -67,3 +64,5 @@ jobs:
           
           npm i @iamrunar/bybit-best-otc-sellers-bot --registry https://npm.pkg.github.com/
           pm2 restart bybit-best-otc-sellers-bot
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
