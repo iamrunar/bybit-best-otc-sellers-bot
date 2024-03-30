@@ -2,6 +2,7 @@
   "name": "@iamrunar/bybit-best-otc-sellers-bot",
   "version": "1.0.0",
   "description": "",
+  "bin": "./main.js",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

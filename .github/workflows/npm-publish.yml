@@ -35,3 +35,26 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  deploy-to-vps:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        # ssh-keygen -t rsa -b 4096 -m PEM -C "github-actions" -f './github-actions2_rsa' 
+        # github-actions.pub paste to vps_host:~/.ssh/authorized_keys
+        # secrets.VPS_PRIVATE_KEY = <content of github-actions>
+        key: ${{ secrets.VPS_PRIVATE_KEY }}
+        port: 22
+        # PM2 is a daemon process manager that will help you manage and keep your application online
+        # https://pm2.keymetrics.io/docs/usage/quick-start/
+        script: |
+          cd ~/apps/bybit-best-otc-sellers-bot
+          echo '//npm.pkg.github.com/:_authToken=TOKEN' >> .npmrc 
+          npm i bybit-best-otc-sellers-bot@latest --registry https://npm.pkg.github.com/
+          pm2 restart bybit-best-otc-sellers-bot
