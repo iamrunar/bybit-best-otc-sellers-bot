@@ -1,5 +1,7 @@
-import TelegramBot from 'node-telegram-bot-api';
-import 'dotenv/config'
+#!/usr/bin/env node
+
+const TelegramBot = require('node-telegram-bot-api');
+require('dotenv').config();
 
 class BybitError extends Error {
     response;
@@ -16,8 +18,8 @@ let finishBybitScan = true;
 const waitForNextDelay = 5000;
 const defaultUserAmountRange = {min: 10_000,max:400_000};
 const API_KEY_BOT = process.env.API_KEY_BOT
-const ALLOW_TELEGRAM_USER_ID = process.env.ALLOW_TELEGRAM_USER_ID
-
+const ALLOW_TELEGRAM_USER_ID = Number(process.env.ALLOW_TELEGRAM_USER_ID)
+const poolingInterval = 300;
 const acceptedTelegramUsers = [ALLOW_TELEGRAM_USER_ID];
 const botCommands = [ { command: 'start', description: 'Запуск бота'},
 { command: 'setup', description: 'Настроить'},
@@ -27,7 +29,7 @@ const botCommands = [ { command: 'start', description: 'Запуск бота'},
 let bybitSecureToken;
 const bot = new TelegramBot(API_KEY_BOT, {
     polling: true,
-    interval: 1000,
+    interval: poolingInterval,
 });
 let telegramLastMessageId;
 bot.setMyCommands(botCommands);
@@ -38,6 +40,7 @@ let botReadyToWatchState = 'none'
 let userAmountRange;
 bot.on("polling_error", err => console.error('TelegramBot error', err));
 bot.on('text', async msg => {
+    console.log('Hello',acceptedTelegramUsers,msg.from.id)
     if (!acceptedTelegramUsers.includes(msg.from.id)){
         return;
     }
