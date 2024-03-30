@@ -10,4 +10,4 @@ telegram bot.
 
 # todo
 - [ ] small modules -- separate by simple layers
-- [ ] eslint, prettier
+- [ ] eslint, prettier 
