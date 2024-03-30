@@ -37,10 +37,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy-to-vps:
+    needs: publish-gpr
     runs-on: ubuntu-latest
     steps:
     - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
+      # https://github.com/appleboy/ssh-action
+      uses: appleboy/ssh-action@v1.0.3
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
@@ -54,7 +56,9 @@ jobs:
         # PM2 is a daemon process manager that will help you manage and keep your application online
         # https://pm2.keymetrics.io/docs/usage/quick-start/
         script: |
-          cd ~/apps/bybit-best-otc-sellers-bot
-          echo '//npm.pkg.github.com/:_authToken=TOKEN' >> .npmrc 
-          npm i bybit-best-otc-sellers-bot@latest --registry https://npm.pkg.github.com/
-          pm2 restart bybit-best-otc-sellers-bot
+          whoami
+          ls -al
+        # cd ~/apps/bybit-best-otc-sellers-bot
+        # echo '//npm.pkg.github.com/:_authToken=TOKEN' >> .npmrc 
+        # npm i bybit-best-otc-sellers-bot@latest --registry https://npm.pkg.github.com/
+        # pm2 restart bybit-best-otc-sellers-bot
