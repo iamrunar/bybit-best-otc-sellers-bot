@@ -43,6 +43,8 @@ jobs:
     - name: Deploy using ssh
       # https://github.com/appleboy/ssh-action
       uses: appleboy/ssh-action@v1.0.3
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB-NPM-PACKAGE-TOKEN}}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
@@ -51,6 +53,7 @@ jobs:
         # secrets.VPS_PRIVATE_KEY = <content of github-actions>
         key: ${{ secrets.VPS_PRIVATE_KEY }}
         port: 22
+        envs: NODE_AUTH_TOKEN
         # PM2 is a daemon process manager that will help you manage and keep your application online
         # https://pm2.keymetrics.io/docs/usage/quick-start/
         script: |
@@ -59,14 +62,12 @@ jobs:
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
           cd ~/apps/bybit-best-otc-sellers-bot
 
-          echo //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN} > .npmrc
+          echo //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN > .npmrc
           echo @iamrunar:registry=https://npm.pkg.github.com/ >> .npmrc
           echo always-auth=true >> .npmrc
           
           npm i @iamrunar/bybit-best-otc-sellers-bot
           pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB-NPM-PACKAGE-TOKEN}}
 
         # npm config set @iamrunar:registry https://npm.pkg.github.com/
         # npm config set //npm.pkg.github.com/:_authToken ${{secrets.GITHUB_TOKEN}}
