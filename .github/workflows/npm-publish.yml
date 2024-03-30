@@ -37,7 +37,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy-to-vps:
-    needs: publish-gpr
+    # needs: publish-gpr
     runs-on: ubuntu-latest
     steps:
     - name: Deploy using ssh
@@ -59,6 +59,6 @@ jobs:
           whoami
           ls -al
         # cd ~/apps/bybit-best-otc-sellers-bot
-        # echo '//npm.pkg.github.com/:_authToken=TOKEN' >> .npmrc 
+        # echo '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' >> .npmrc 
         # npm i bybit-best-otc-sellers-bot@latest --registry https://npm.pkg.github.com/
         # pm2 restart bybit-best-otc-sellers-bot
