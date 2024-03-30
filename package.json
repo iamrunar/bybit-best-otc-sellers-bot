@@ -1,6 +1,6 @@
 {
   "name": "@iamrunar/bybit-best-otc-sellers-bot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "bin": "./main.js",
   "main": "main.js",
@@ -16,7 +16,6 @@
     "node-telegram-bot-api": "^0.65.1"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/iamrunar/bybit-best-otc-sellers-bot.git"
+    "url": "git+https://github.com/iamrunar/bybit-best-otc-sellers-bot.git"
   }
 }
