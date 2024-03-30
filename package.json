@@ -1,6 +1,6 @@
 {
   "name": "@iamrunar/bybit-best-otc-sellers-bot",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "bin": "./main.js",
   "main": "main.js",
