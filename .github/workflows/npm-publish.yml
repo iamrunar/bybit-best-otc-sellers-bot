@@ -45,8 +45,8 @@ jobs:
       uses: appleboy/ssh-action@v1.0.3
       env:
         NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_GITHUB_TOKEN}}
-        ALLOW_TELEGRAM_USER_ID: ${{secrets.TELEGRAM_ALLOW_USER_ID}}
         API_KEY_BOT: ${{secrets.TELEGRAM_API_KEY_BOT}}
+        ALLOW_TELEGRAM_USER_ID: ${{secrets.TELEGRAM_ALLOW_USER_ID}}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
