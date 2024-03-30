@@ -28,6 +28,5 @@ jobs:
           git config user.name "${{ secrets.ORG_NAME }}"
           npm version patch --no-git-tag-version
           git push
-      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
