@@ -2,7 +2,9 @@
   "name": "@iamrunar/bybit-best-otc-sellers-bot",
   "version": "1.0.10",
   "description": "",
-  "bin": "./main.js",
+  "bin": {
+    "bybit-best-otc-sellers-bot": "./main"
+  },
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
