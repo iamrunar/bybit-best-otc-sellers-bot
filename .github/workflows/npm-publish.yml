@@ -69,5 +69,4 @@ jobs:
           npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_GITHUB_TOKEN
 
           npm i @iamrunar/bybit-best-otc-sellers-bot
-          env
           pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
