@@ -62,7 +62,7 @@ jobs:
           echo //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN} > .npmrc 
           echo @iamrunar:registry=https://npm.pkg.github.com/ >> .npmrc 
           
-          npm i @iamrunar/bybit-best-otc-sellers-bot --registry https://npm.pkg.github.com/
-          pm2 restart bybit-best-otc-sellers-bot
+          npm i @iamrunar/bybit-best-otc-sellers-bot@latest
+          pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
