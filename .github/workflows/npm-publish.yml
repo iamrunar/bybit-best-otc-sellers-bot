@@ -37,14 +37,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy-to-vps:
-    # needs: publish-gpr
+    needs: publish-gpr
     runs-on: ubuntu-latest
     steps:
     - name: Deploy using ssh
       # https://github.com/appleboy/ssh-action
       uses: appleboy/ssh-action@v1.0.3
       env:
-        NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_GITHUB_TOKEN}}
         API_KEY_BOT: ${{secrets.TELEGRAM_API_KEY_BOT}}
         ALLOW_TELEGRAM_USER_ID: ${{secrets.TELEGRAM_ALLOW_USER_ID}}
       with:
@@ -66,7 +65,7 @@ jobs:
           cd ~/apps/bybit-best-otc-sellers-bot
           
           npm config set @iamrunar:registry https://npm.pkg.github.com/
-          npm config set //npm.pkg.github.com/:_authToken ${NODE_AUTH_TOKEN}
+          npm config set //npm.pkg.github.com/:_authToken ${{secrets.NODE_AUTH_GITHUB_TOKEN}}
 
           npm i @iamrunar/bybit-best-otc-sellers-bot
           pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
