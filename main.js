@@ -19,7 +19,7 @@ const waitForNextDelay = 5000;
 const defaultUserAmountRange = {min: 10_000,max:400_000};
 const API_KEY_BOT = process.env.API_KEY_BOT
 const ALLOW_TELEGRAM_USER_ID = Number(process.env.ALLOW_TELEGRAM_USER_ID)
-
+const poolingInterval = 300;
 const acceptedTelegramUsers = [ALLOW_TELEGRAM_USER_ID];
 const botCommands = [ { command: 'start', description: 'Запуск бота'},
 { command: 'setup', description: 'Настроить'},
@@ -29,7 +29,7 @@ const botCommands = [ { command: 'start', description: 'Запуск бота'},
 let bybitSecureToken;
 const bot = new TelegramBot(API_KEY_BOT, {
     polling: true,
-    interval: 1000,
+    interval: poolingInterval,
 });
 let telegramLastMessageId;
 bot.setMyCommands(botCommands);
