@@ -61,7 +61,9 @@ jobs:
 
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
           cd ~/apps/bybit-best-otc-sellers-bot
-          
+
           echo //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN} > .npmrc 
-          npm i bybit-best-otc-sellers-bot --registry https://npm.pkg.github.com/
+          echo @iamrunar:registry=https://npm.pkg.github.com/ >> .npmrc 
+          
+          npm i @iamrunar/bybit-best-otc-sellers-bot --registry https://npm.pkg.github.com/
           pm2 restart bybit-best-otc-sellers-bot
