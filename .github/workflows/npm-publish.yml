@@ -65,8 +65,8 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
 
-          export API_KEY_BOT = ${API_KEY_BOT}
-          export ALLOW_TELEGRAM_USER_ID = ${ALLOW_TELEGRAM_USER_ID}
+          export API_KEY_BOT='${API_KEY_BOT}''
+          export ALLOW_TELEGRAM_USER_ID=${ALLOW_TELEGRAM_USER_ID}
           
           mkdir -p ~/apps/bybit-best-otc-sellers-bot
           cd ~/apps/bybit-best-otc-sellers-bot
