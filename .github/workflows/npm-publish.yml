@@ -31,9 +31,12 @@ jobs:
           node-version: '20.x'
           registry-url: https://npm.pkg.github.com/
           scope: '@iamrunar'
-      - run: npm ci
-      - run: npm version patch
-      - run: npm publish
+      - run: |
+          npm ci
+          git config --global user.email "${{ vars.ORG_EMAIL }}"
+          git config --global user.email "${{ vars.ORG_NAME }}"
+          npm version patch
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
