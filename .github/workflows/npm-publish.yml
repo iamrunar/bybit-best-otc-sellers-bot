@@ -55,6 +55,7 @@ jobs:
         # secrets.VPS_PRIVATE_KEY = <content of github-actions>
         key: ${{ secrets.VPS_PRIVATE_KEY }}
         port: 22
+        envs: API_KEY_BOT,ALLOW_TELEGRAM_USER_ID
         # PM2 is a daemon process manager that will help you manage and keep your application online
         # https://pm2.keymetrics.io/docs/usage/quick-start/
         script: |
@@ -66,6 +67,6 @@ jobs:
           
           npm config set @iamrunar:registry https://npm.pkg.github.com/
           npm config set //npm.pkg.github.com/:_authToken ${NODE_AUTH_TOKEN}
-          
+
           npm i @iamrunar/bybit-best-otc-sellers-bot
           pm2 restart node_modules/@iamrunar/bybit-best-otc-sellers-bot
